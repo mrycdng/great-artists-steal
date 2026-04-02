@@ -1,0 +1,77 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+}
+
+#controls {
+    width: 220px;
+}
+
+button:disabled {
+    opacity: .3;
+    pointer-events: none;
+}
+
+#canvas {
+    position: relative;
+    width: 640px;
+    height: 800px;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+}
+
+.cell {
+    border: 1px dashed #ccc;
+}
+
+.selection {
+    position: absolute;
+    border: 2px solid black;
+    background: rgba(0, 0, 0, .05);
+    pointer-events: none;
+    z-index: 20;
+}
+
+.confirmBtn {
+    position: absolute;
+    background: white;
+    border: 1px solid black;
+    cursor: pointer;
+    z-index: 40;
+}
+
+#urlBox {
+    display: none;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    color: #bbb;
+}
+
+#urlBox.active {
+    color: black;
+}
+
+.imageStage {
+    position: absolute;
+    z-index: 5;
+}
+
+.imageStage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.fade {
+    position: absolute;
+    background: white;
+    opacity: .7;
+    pointer-events: none;
+    z-index: 10;
+}
