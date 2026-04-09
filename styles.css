@@ -4,16 +4,6 @@ body {
     gap: 30px;
     padding: 30px;
 }
-
-#controls {
-    width: 220px;
-}
-
-button:disabled {
-    opacity: .3;
-    pointer-events: none;
-}
-
 #canvas {
     position: relative;
     width: 640px;
