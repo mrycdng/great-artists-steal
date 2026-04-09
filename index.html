@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Web Collage Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>great artists steal</title>
     <link rel="stylesheet" href="styles.css">
-   
 </head>
-
 <body>
-
-    <div id="controls">
-        <button id="selectBtn">Make Selection</button><br><br>
-        <input id="urlBox" placeholder="Paste image URL">
-    </div>
-
     <div id="canvas"></div>
-
+    <div id="sidebar">
+        <div id="title">great artists steal</div>
+        <div id="modes">
+            <div id="mode-picture"><button id="mode-picture-button">picture</button></div>
+            <div id="mode-pattern"><button id="mode-pattern-button">pattern</button></div>
+        </div>
+        <input id="link-input" placeholder="paste image URL:"></input>
+        <div id="links">
+            <p>links</p>
+            <ol id="links-list"></ol>
+        </div>
+    </div>
     <script src="script.js" defer></script>
-    
 </body>
-
 </html>
