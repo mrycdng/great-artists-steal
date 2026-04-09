@@ -11,9 +11,14 @@ body{
     height:100%;
     background-color:rgb(238, 238, 238);
 
-    display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    grid-template-rows: repeat(20, 1fr);
+
+
+    background-image:
+        linear-gradient(to right, rgba(0,0,0,.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,.08) 1px, transparent 1px);
+    background-size:20px 20px;
+    position:relative;
+    overflow:hidden;
 }
 
 #sidebar {
@@ -23,33 +28,42 @@ body{
     margin:10px;
     top:0px;
     bottom:0px;
-    left:20px;
+    left:10px;
     /* background-color:white; */
 
     display:flex;
     flex-direction:column;
     gap:10px;
+
+    color:grey;
+    backdrop-filter: blur(10px);
 }
 
+#sidebar > * {
+    background-color:white;
+    border:1px solid grey;
+    border-radius:5px;
+    padding:5px;
+
+}
 #title {
     text-align:center;
     text-transform:uppercase;
-    padding:5px;
+    font-size:.9rem;
+    background:none;
+    border:0px;
 
 }
 
 #modes {
     display:flex;
     justify-content:space-around;
-    background-color:lightgrey;
-    border:1px solid black;
-    border-radius:5px;
     font-size:.8rem;
     text-transform:uppercase;
+    padding:0;
 }
 
 #modes > div {
-    box-sizing:border-box;
     flex:1;
     padding:5px;
     text-align:center;
@@ -57,7 +71,7 @@ body{
 }
 
 #mode-picture {
-    border-right:1px solid black;
+    border-right:1px solid grey;
 }
 #mode-picture-button, #mode-pattern-button {
     all:unset;
@@ -65,17 +79,137 @@ body{
 
 #modes > div:hover {
     color:white;
-    background-color:black;
+    background-color:grey;
     transition:.25s;
 }
 
 #link-input {
-    font-size:.9rem;
+    font-size:.8rem;
     font-style:italic;
-    padding:5px;
-    background-color:white;
-    border:1px solid black;
     color:lightgrey;
     border-radius:5px;
 
 }
+
+#image-wrapper {
+    width:fit-content;
+    height:100vh;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    justify-content:center;
+
+}
+
+#image-edit {
+
+    background-color:white;
+    border:1px solid grey;
+    border-radius:5px;
+}
+
+#image-button {
+    all:unset;
+    padding:5px;
+    font-size:.8rem;
+    color:grey;
+    background-color:white;
+    border:1px solid grey;
+    border-radius: 5px;
+    width:fit-content;
+    margin-left:auto;
+    margin-right:auto;
+    cursor:grab;
+    text-transform:uppercase;
+}
+
+#image-button:hover{
+    background-color:grey;
+    color:white;
+}
+
+#links {
+    flex:1;
+    overflow-y:scroll;
+    overflow-wrap:break-word;
+    font-size:.9rem;
+}
+
+#links p {
+    text-align:center;
+    margin-top:0;
+    font-size:.8rem;
+    text-transform:uppercase;
+}
+
+#links-list a {
+    font-family:'Times New Roman', Times, serif;
+    font-size:1rem;
+}
+
+
+
+/* ACTIVE MODE */
+
+.mode-active{
+    color:white;
+    background-color:grey;
+}
+
+
+/* IMAGE EDITOR */
+
+#image-edit{
+    position:relative;
+    overflow:hidden;
+}
+
+#image-edit img{
+    display:block;
+    max-width:80vw;
+    max-height:60vh;
+}
+
+
+/* CROP BOX */
+
+.crop-box{
+    position:absolute;
+    border:2px dashed black;
+    background:transparent;
+    cursor:move;
+}
+
+.crop-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,.7);
+    pointer-events:none;
+}
+
+
+/* FINAL IMAGE ON CANVAS */
+
+.canvas-image{
+    position:absolute;
+    cursor:move;
+}
+
+.canvas-image img{
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+.resize-handle{
+    width:10px;
+    height:10px;
+    background:black;
+    position:absolute;
+}
+
+.handle-br{ bottom:-5px; right:-5px; cursor:nwse-resize;}
+.handle-bl{ bottom:-5px; left:-5px; cursor:nesw-resize;}
+.handle-tr{ top:-5px; right:-5px; cursor:nesw-resize;}
+.handle-tl{ top:-5px; left:-5px; cursor:nwse-resize;}
