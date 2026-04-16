@@ -23,7 +23,7 @@ body{
 
 #sidebar {
     box-sizing:border-box;
-    width:300px;
+    width:310px;
     position:fixed;
     margin:10px;
     top:0px;
@@ -36,7 +36,8 @@ body{
     gap:10px;
 
     color:grey;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(3px);
+    z-index:30;
 }
 
 #sidebar > * {
@@ -49,7 +50,7 @@ body{
 #title {
     text-align:center;
     text-transform:uppercase;
-    font-size:.9rem;
+    font-size:.8rem;
     background:none;
     border:0px;
 
@@ -61,6 +62,8 @@ body{
     font-size:.8rem;
     text-transform:uppercase;
     padding:0;
+    width:20vw;
+    color:grey;
 }
 
 #modes > div {
@@ -84,29 +87,56 @@ body{
 }
 
 #link-input {
+    all:unset;
+    border: 1px solid grey;
+    border-radius:5px;
+    padding:5px;
+    background-color:white;
     font-size:.8rem;
     font-style:italic;
-    color:lightgrey;
-    border-radius:5px;
+    color:grey;
+
+
 
 }
 
 #image-wrapper {
-    width:fit-content;
-    height:100vh;
-    margin:auto;
+    box-sizing: border-box;
+
+    width:78vw;
+    height:90vh;
+    top:30px;
+    position:absolute;
+    left:22vw;
+
+    padding: 16px 0;
+
     display:flex;
     flex-direction:column;
     gap:10px;
-    justify-content:center;
+    justify-content: flex-start;
+    align-items:center;
 
+    z-index: 9999;
+}
+#image-wrapper > * {
+    background-color:white;
+    border:1px solid grey;
+    border-radius:5px;
+    color:grey;
 }
 
 #image-edit {
 
-    background-color:white;
-    border:1px solid grey;
-    border-radius:5px;
+    flex: 1 1 0;
+    min-height: 0;
+    width: 72vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 #image-button {
@@ -118,8 +148,6 @@ body{
     border:1px solid grey;
     border-radius: 5px;
     width:fit-content;
-    margin-left:auto;
-    margin-right:auto;
     cursor:grab;
     text-transform:uppercase;
 }
@@ -133,7 +161,7 @@ body{
     flex:1;
     overflow-y:scroll;
     overflow-wrap:break-word;
-    font-size:.9rem;
+    font-size:.8rem;
 }
 
 #links p {
@@ -145,7 +173,10 @@ body{
 
 #links-list a {
     font-family:'Times New Roman', Times, serif;
-    font-size:1rem;
+    font-size:.9rem;
+}
+#links li {
+    padding-bottom:10px;
 }
 
 
@@ -203,8 +234,8 @@ body{
 }
 
 .resize-handle{
-    width:10px;
-    height:10px;
+    width:6px;
+    height:6px;
     background:black;
     position:absolute;
 }
@@ -213,3 +244,170 @@ body{
 .handle-bl{ bottom:-5px; left:-5px; cursor:nesw-resize;}
 .handle-tr{ top:-5px; right:-5px; cursor:nesw-resize;}
 .handle-tl{ top:-5px; left:-5px; cursor:nwse-resize;}
+
+
+
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#image-edit img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+.img-err {
+    color: #999;
+    font-size: .75rem;
+    font-style: italic;
+    padding: 2rem;
+    margin: 0;
+    text-align: center;
+}
+
+
+/* Darkens everything beyond */
+.crop-box {
+    box-shadow: 0 0 0 9999px rgba(255, 255, 255, 0.68);
+    z-index: 2;
+}
+
+/* Handles inside the crop editor: white-filled squares */
+.crop-box .resize-handle {
+    background-color: grey;
+    z-index: 3;
+}
+
+
+.canvas-image,
+.canvas-pattern {
+    position: absolute;
+    cursor: move;
+    box-sizing: border-box;
+}
+
+/* Dotted lines highlight when hovering over placed image/pattern */
+.canvas-image:hover,
+.canvas-pattern:hover {
+    outline: 1.5px dashed grey;
+    outline-offset: -1px;
+}
+
+
+/* Handles on canvas items (both picture and pattern) */
+.canvas-image .resize-handle,
+.canvas-pattern .resize-handle {
+    background-color: grey;
+    border: 1.5px solid grey;
+    z-index: 5;
+}
+
+
+#save-button {
+    all: unset;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 5px;
+    font-size: .8rem;
+    color: grey;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 5px;
+    cursor: grab;
+    text-transform: uppercase;
+    z-index: 100;
+}
+
+#save-button:hover {
+    background-color: grey;
+    color: white;
+}
+
+
+#grid-slider-wrapper {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    backdrop-filter: blur(3px);
+}
+
+#grid-slider-label {
+    font-family: Arial, sans-serif;
+    font-size: .8rem;
+    text-transform: uppercase;
+    color: grey;
+    white-space: nowrap;
+    margin-right: 10px;
+    padding:0;
+}
+
+#grid-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 1px;
+    background: grey;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+}
+
+
+#grid-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid grey;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+}
+
+#grid-slider::-webkit-slider-thumb:hover,
+#grid-slider:active::-webkit-slider-thumb {
+    background: grey;
+    border-color: grey;
+}
+
+
+#grid-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid grey;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+}
+
+#grid-slider::-moz-range-thumb:hover,
+#grid-slider:active::-moz-range-thumb {
+    background: grey;
+    border-color: grey;
+}
+
+/* hide the track fill tint in firefox */
+#grid-slider::-moz-range-track {
+    background: grey;
+    height: 1px;
+    border: none;
+}

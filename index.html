@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>great artists steal</title>
     <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
@@ -14,34 +17,42 @@
             Function for cropping the image. After an image URL is entered in the sidebar, the image fills the image-edit div, which appears along with the confirmation button. The user can crop the image to desired size.
             Depending on which of the two mode buttons are pressed, the panel either allows the user to crop the image freeform to be used on its own, or crop it down to a square to be repeated on the canvas as a pattern.
         -->
-        <div id="image-wrapper" hidden>
-        <div id="image-edit"></div>
-        <button id="image-button">insert image</button>
-    </div>
+        <div id="grid-slider-wrapper">
+            <label for="grid-slider" id="grid-slider-label">unit size</label>
+            <input type="range" id="grid-slider" min="20" max="80" step="10" value="20">
+        </div>
+        <div id="image-wrapper">
+            <div id="modes">
+                <div id="mode-picture"><button id="mode-picture-button">insert picture</button></div>
+                <div id="mode-pattern"><button id="mode-pattern-button">insert pattern</button></div>
+            </div>
+            <div id="image-edit"></div>
+            <button id="image-button">upload</button>
+        </div>
     </div>
     <div id="sidebar">
-        <div id="title">great artists steal</div>
+        <div id="title">“good artists copy, great artists...”</div>
+        <input id="link-input" placeholder="STEAL IMAGE via URL"></input>
 
         <!-- 
             The two modes the user is allowed to choose from. Once either button is pressed, the link input field appears.
          -->
-        <div id="modes">
-            <div id="mode-picture"><button id="mode-picture-button">picture</button></div>
-            <div id="mode-pattern"><button id="mode-pattern-button">pattern</button></div>
-        </div>
-        <input id="link-input" placeholder="Paste image URL:" hidden></input>
 
-        
+
+
         <!-- 
             Records every image link ever inputted in ordered list form. Hovering over each link entry will highlight it in yellow, and 
          -->
         <div id="links">
-            <p>Links</p>
+            <p>Images stolen</p>
             <ol id="links-list">
             </ol>
         </div>
     </div>
     <script src="script.js" defer></script>
+
+    <button id="save-button">save</button>
+
 </body>
 
 </html>
